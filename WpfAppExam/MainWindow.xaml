@@ -1,0 +1,168 @@
+﻿<Window x:Class="WpfAppExam.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppExam"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    
+    <Grid x:Name="MainGrid" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Label 
+            Content="Вход" 
+            FontWeight="Bold"
+            FontSize="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Bottom"
+            Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   HorizontalContentAlignment="Right"
+                   Content="Логин"
+                   FontWeight="Bold"/>
+        </Grid>
+
+        <!--Логин-->
+        <TextBox x:Name="LoginBox"
+                Grid.Row="2"
+                HorizontalContentAlignment="Center"
+                Width="235"/>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   Content="Пароль"
+                   HorizontalContentAlignment="Right"
+                   FontWeight="Bold"/>
+        </Grid>
+
+        <!--Пароль-->
+        <PasswordBox x:Name="PsswdBox"
+                 Grid.Row="4"
+                 HorizontalContentAlignment="Center"
+                 Width="235"/>
+
+        <!--При неправильно введеном пароле вызывает ошибку (в зависимости от неправильно введеного: пароля или логина)-->
+        <Label x:Name="ErrorLabel"
+                Grid.Row="5"  
+                HorizontalContentAlignment="Center"
+                Foreground="Red"/>
+        
+        <!--КАПЧА-->
+        <StackPanel Grid.Row="6" Orientation="Vertical" >
+            <Image x:Name="CaptchaImage" Width="200" Height="50" Visibility="Hidden"/>
+            <TextBox x:Name="CaptchaBox" Width="100" Height="20" Visibility="Hidden"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        
+        <Button x:Name="LoginButton"
+                Grid.Row="7"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Вход"
+                Width="25"
+                Background="Transparent"
+                BorderBrush="Transparent" Click="LoginButton_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="GuestButton" 
+                Grid.Row="8"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Войти как гость"
+                Width="85"
+                Background="Transparent"
+                BorderBrush="Transparent" Click="GuesButton_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>
